@@ -24,14 +24,6 @@ function exclaim(sentence) {
     }
     return str + "!"
   } 
-    // for(let i = 0; i <= sentence.length; i ++){
-    //   if(sentence[i]!== "!"){
-    //     sentence = sentence + sentence.length[i]
-    //   } else{
-    //     sentence = sentence
-    //   }
-    // } return sentence + "!"
-  
 }
 
 function countWords(str) {
@@ -97,29 +89,76 @@ function containsUpperCase(str) {
 }
 
 function containsNonAlphanumeric(str) {
-  // if(containsLowerCase(str) === false ||containsUpperCase(str)=== false||containsDigit(str)===false){
-  //   if()}
-
+  let count = 0
+for(let char of str){
+  if(containsLowerCase(char)=== true){
+    count = count + 1
+  } else if (containsUpperCase(char)===true){
+    count = count + 1
+  } else if (containsDigit(char)===true){
+    count = count + 1
+  }
+}
+return str.length !== count
 }
 
-function containsSpace() {
-
+function containsSpace(str) {
+   return str.indexOf(" ") !== -1
 }
 
-function digits() {
-  
+function digits(number) {
+  let array = number.toString().split("")
+  let final = []
+  for(let char of array){
+    if(containsNonAlphanumeric(char)=== true){
+    } else {
+      char = parseFloat(char)
+      final.push(char)
+    }
+  } return final
 }
 
-function truncate() {
-
+function truncate(str) {
+  if(isLong(str)=== false){
+    return str
+  } else {
+    final = ""
+    for(let char of str){
+      if(final.length <= 7){
+        final = final + char
+      }
+    }
+  }
+  return final + "..."
 }
 
-function isValidPassword() {
-  
+function isValidPassword(str) {
+  if(!containsUpperCase(str)){
+    return false
+  } else if(!containsLowerCase(str)){
+    return false
+  } else if(!containsDigit(str)){
+    return false
+  } else if(!containsNonAlphanumeric(str)){
+    return false
+  } else if(containsSpace(str)){
+    return false
+  } else {
+    return true
+  }
 }
 
-function onlyPunchy() {
-
+function onlyPunchy(arr) {
+  let final = []
+  for(let str of arr){
+    str = exclaim(str)
+    if(isLong(str)===true){
+      final = final
+    } else {
+      final.push(str)
+    }
+  }
+  return final
 }
 
 
